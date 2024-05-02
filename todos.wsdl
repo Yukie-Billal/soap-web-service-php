@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<definitions name="TodosService"
+    targetNamespace="http://soap-web-service.test"
+    xmlns:tns="http://soap-web-service.test"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    xmlns="http://schemas.xmlsoap.org/wsdl/">
+
+    <message name="allRequest">
+    </message>
+    <message name="allResponse">
+        <part name="return" type="xsd:string"/>
+    </message>
+    <message name="byIdRequest">
+        <part name="id" type="xsd:string"/>
+    </message>
+    <message name="byIdResponse">
+        <part name="return" type="xsd:string"/>
+    </message>
+
+    <portType name="TodosPortType">
+        <operation name="all">
+            <input message="tns:allRequest" />
+            <output message="tns:allResponse"/>
+        </operation>
+        <operation name="byId">
+            <input message="tns:byIdRequest"/>
+            <output message="tns:byIdResponse"/>
+        </operation>
+    </portType>
+
+    <binding name="TodosBinding" type="tns:TodosPortType">
+        <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="all">
+            <soap:operation soapAction="all"/>
+            <input>
+                <soap:body use="encoded" namespace="http://soap-web-service.test" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" namespace="http://soap-web-service.test" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </output>
+        </operation>
+        <operation name="byId">
+            <soap:operation soapAction="byId"/>
+            <input>
+                <soap:body use="encoded" namespace="http://soap-web-service.test" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" namespace="http://soap-web-service.test" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </output>
+        </operation>
+    </binding>
+
+    <service name="TodosService">
+        <port name="TodosPort" binding="tns:TodosBinding">
+            <soap:address location="http://soap-web-service.test/todos.php"/>
+        </port>
+    </service>
+</definitions>
+
