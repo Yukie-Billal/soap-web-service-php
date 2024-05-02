@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<definitions name="CalculatorService"
+    targetNamespace="http://example.com/calculator"
+    xmlns:tns="http://example.com/calculator"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    xmlns="http://schemas.xmlsoap.org/wsdl/">
+
+    <message name="addRequest">
+        <part name="num1" type="xsd:int"/>
+        <part name="num2" type="xsd:int"/>
+    </message>
+    <message name="addResponse">
+        <part name="sum" type="xsd:int"/>
+    </message>
+
+    <portType name="CalculatorPortType">
+        <operation name="add">
+            <input message="tns:addRequest"/>
+            <output message="tns:addResponse"/>
+        </operation>
+        <operation name="subtract">
+            <input message="tns:addRequest"/>
+            <output message="tns:addResponse"/>
+        </operation>
+    </portType>
+
+    <binding name="CalculatorBinding" type="tns:CalculatorPortType">
+        <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="add">
+            <soap:operation soapAction="add"/>
+            <input>
+                <soap:body use="encoded" namespace="http://soap-web-service.test" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" namespace="http://soap-web-service.test" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </output>
+        </operation>
+        <operation name="subtract">
+            <soap:operation soapAction="subtract"/>
+            <input>
+                <soap:body use="encoded" namespace="http://soap-web-service.test" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" namespace="http://soap-web-service.test" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </output>
+        </operation>
+    </binding>
+
+    <service name="CalculatorService">
+        <port name="CalculatorPort" binding="tns:CalculatorBinding">
+            <soap:address location="http://soap-web-service.test/server.php"/>
+        </port>
+    </service>
+</definitions>
+
