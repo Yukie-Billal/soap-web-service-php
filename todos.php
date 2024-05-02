@@ -27,6 +27,4 @@ class Todos extends Database {
 $server = new SoapServer(null, array('uri' => "http://soap-web-service.test/todos.php"));
 
 $server->setClass('Todos');
-
 $server->handle();
-
