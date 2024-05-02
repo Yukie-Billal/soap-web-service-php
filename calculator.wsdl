@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <definitions name="CalculatorService"
-    targetNamespace="http://example.com/calculator"
-    xmlns:tns="http://example.com/calculator"
+    targetNamespace="http://soap-web-service.test"
+    xmlns:tns="http://soap-web-service.test"
     xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema"
     xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
@@ -51,7 +51,7 @@
 
     <service name="CalculatorService">
         <port name="CalculatorPort" binding="tns:CalculatorBinding">
-            <soap:address location="http://soap-web-service.test/server.php"/>
+            <soap:address location="http://soap-web-service.test/calculator.php"/>
         </port>
     </service>
 </definitions>
