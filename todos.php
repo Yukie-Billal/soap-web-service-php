@@ -13,14 +13,12 @@ class Todos extends Database {
          $data[] = $result;
       }
       return json_encode($data);
-      $connection->close();
    }
    
    public function byId($id) {
       $connection = mysqli_connect($this->DBHOST, $this->DBUSER, $this->DBPASS, $this->DBNAME);
       $result = mysqli_query($connection, "SELECT * FROM todos WHERE id ='$id'");
-      $connection->close();
-      return json_encode($result);
+      return json_encode($result->fetch_assoc());
    }
 }
 
