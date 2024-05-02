@@ -13,7 +13,7 @@
         <part name="num2" type="xsd:int"/>
     </message>
     <message name="addResponse">
-        <part name="sum" type="xsd:int"/>
+        <part name="return" type="xsd:int"/>
     </message>
 
     <portType name="CalculatorPortType">
